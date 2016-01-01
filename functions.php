@@ -9,6 +9,7 @@
 require_once dirname(__FILE__) . '/functions/admin.php';
 require_once dirname(__FILE__) . '/functions/advanced-custom-fields.php';
 require_once dirname(__FILE__) . '/functions/utility.php';
+require_once dirname(__FILE__) . '/functions/widget.php';
 
 /** Enable additional theme features */
 add_post_type_support('page', 'excerpt');
