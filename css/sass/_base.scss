@@ -5,6 +5,10 @@
  * @author %Author%
  */
 
+ * {
+  @include box-sizing(border-box);
+ }
+
 /** Base typography */
 body {
   font-family: $body-font-family;
@@ -27,18 +31,17 @@ ol, ul {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
   color: $link-color;
   @include transition(all, $link-transition-speed);
   &:hover, &:focus, &:active {
-    text-decoration: underline;
     color: $link-hover-color;
   }
 }
 
 /** Images */
 img {
-  display: block;
+  display: inline-block;
   width: auto;
   max-width: 100%;
   height: auto;
@@ -46,9 +49,9 @@ img {
 }
 
 .alignleft, .alignright, .aligncenter, .alignnone {
-  margin-left: auto;
-  margin-right: auto;
-}
+    margin-left: auto;
+    margin-right: auto;
+  }
 
 /** Utility classes */
 .screen-reader-text {
@@ -70,6 +73,7 @@ img {
 
 /** Structure */
 .container {
+  @extend .clearfix;
   @include box-sizing(content-box);
   max-width: $container-max-width;
   margin: 0 auto;
@@ -80,6 +84,10 @@ img {
   margin-bottom: $body-line-height;
 }
 
+.row {
+  @include display-flex;
+}
+
 /** Header and footer */
 header, footer {
   @extend .container;
@@ -87,6 +95,7 @@ header, footer {
 
 /** Content styles */
 #content {
+  @extend .clearfix;
   @extend .container;
 }
 

@@ -7,18 +7,21 @@
 
 @import 'functions';
 
-/* Global */
+/** Global */
 $rem-base: 16px !default;
 
 $container-max-width: 1260px;
 $container-padding: 4%;
 $page-top-banner-height: 280px;
 
-// Timing
+/** Timing */
 $transition-speed: .4s;
 $link-transition-speed: .15s;
 
- /* Typography */
+/** Colors */
+$color-cta: #c00;
+
+/** Typography */
 $body-font-family: sans-serif;
 $body-text-color: #333;
 $body-line-height: 1.8em;
