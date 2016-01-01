@@ -124,6 +124,25 @@ function themenameRegisterNavMenus() {
 add_action('init', 'themenameRegisterNavMenus');
 
 /**
+ * Register a dynamic sydebar for widgets
+ *
+ * @uses register_sidebar()
+ */
+function themenameWidgetsInit() {
+
+	register_sidebar(array(
+		'name' => 'Right Sidebar',
+		'id' => 'right-sidebar',
+		'before_widget' => '<div class="widget">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="widget-title">',
+		'after_title' => '</h2>',
+	));
+
+}
+//add_action( 'widgets_init', 'themenameWidgetsInit' );
+
+/**
  * Register and enqueue theme styles and scripts
  *
  * @return void
