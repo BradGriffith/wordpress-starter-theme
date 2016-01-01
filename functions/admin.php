@@ -12,11 +12,11 @@
  * @param array $buttons Buttons for this row of the TinyMCE toolbar
  * @return array
  */
-function themename_add_style_select_to_tinymce( $buttons = array() ) {
-  array_unshift( $buttons, 'styleselect' );
-  return $buttons;
+function themenameAddStyleSelectToTinymce($buttons = array()) {
+	array_unshift($buttons, 'styleselect');
+	return $buttons;
 }
-add_filter( 'mce_buttons_2', 'themename_add_style_select_to_tinymce' );
+add_filter('mce_buttons_2', 'themenameAddStyleSelectToTinymce');
 
 /**
  * Customize the TinyMCE WYSIWYG editor
@@ -28,32 +28,32 @@ add_filter( 'mce_buttons_2', 'themename_add_style_select_to_tinymce' );
  * @link http://wpengineer.com/1963/customize-wordpress-wysiwyg-editor/
  * @link http://wiki.moxiecode.com/index.php/TinyMCE:Control_reference
  */
-function themename_change_mce_buttons( $init ) {
-  $block_formats = array(
-    'Paragraph=p',
-    'Address=address',
-    'Pre=pre',
-    'Heading 2=h2',
-    'Heading 3=h3',
-    'Heading 4=h4',
-    'Heading 5=h5',
-    'Heading 6=h6'
-  );
-  $init['block_formats'] = implode( ';', $block_formats );
+function themenameChangeMceButtons($init) {
+	$block_formats = array(
+		'Paragraph=p',
+		'Address=address',
+		'Pre=pre',
+		'Heading 2=h2',
+		'Heading 3=h3',
+		'Heading 4=h4',
+		'Heading 5=h5',
+		'Heading 6=h6',
+	);
+	$init['block_formats'] = implode(';', $block_formats);
 
-  $style_formats = array(
-    array(
-      'title' => __( 'Blockquote citation', '%Text_Domain%' ),
-      'selector' => 'blockquote p',
-      'classes' => 'cite',
-      'wrapper' => false
-    )
-  );
-  $init['style_formats'] = json_encode( $style_formats );
+	$style_formats = array(
+		array(
+			'title' => __('Blockquote citation', '%Text_Domain%'),
+			'selector' => 'blockquote p',
+			'classes' => 'cite',
+			'wrapper' => false,
+		),
+	);
+	$init['style_formats'] = json_encode($style_formats);
 
-  return $init;
+	return $init;
 }
-add_filter( 'tiny_mce_before_init', 'themename_change_mce_buttons' );
+add_filter('tiny_mce_before_init', 'themenameChangeMceButtons');
 
 /**
  * Hide admin menus we don't need
@@ -61,19 +61,19 @@ add_filter( 'tiny_mce_before_init', 'themename_change_mce_buttons' );
  * @global $menu
  * @return void
  */
-function themename_remove_admin_menus() {
-  global $menu;
-  $restricted = array( __( 'Posts' ), __( 'Comments' ) );
-  end( $menu );
-  while ( prev( $menu ) ) {
-    $value = explode( ' ', $menu[ key( $menu ) ][0] );
-    if ( in_array( $value['0'] != null ? $value[0] : '', $restricted ) ) {
-      unset( $menu[ key( $menu ) ] );
-    }
-  }
-  return;
+function themenameRemoveAdminMenus() {
+	global $menu;
+	$restricted = array(__('Posts'), __('Comments'));
+	end($menu);
+	while (prev($menu)) {
+		$value = explode(' ', $menu[key($menu)][0]);
+		if (in_array($value['0'] != null ? $value[0] : '', $restricted)) {
+			unset($menu[key($menu)]);
+		}
+	}
+	return;
 }
-//add_action( 'admin_menu', 'themename_remove_admin_menus' );
+//add_action( 'admin_menu', 'themenameRemoveAdminMenus' );
 
 /**
  * Remove the "Text Color" TinyMCE button
@@ -81,10 +81,10 @@ function themename_remove_admin_menus() {
  * @param array $buttons Buttons for this row of the TinyMCE toolbar
  * @return array
  */
-function themename_remove_forecolor_button( $buttons = array() ) {
-  if ( $key = array_search( 'forecolor', $buttons ) ) {
-    unset( $buttons[ $key ] );
-  }
-  return $buttons;
+function themenameRemoveForecolorButton($buttons = array()) {
+	if ($key = array_search('forecolor', $buttons)) {
+		unset($buttons[$key]);
+	}
+	return $buttons;
 }
-add_filter( 'mce_buttons_2', 'themename_remove_forecolor_button' );
+add_filter('mce_buttons_2', 'themenameRemoveForecolorButton');

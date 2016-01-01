@@ -12,20 +12,20 @@
  * To prevent loading this file (e.g. in development), add the following to your wp-config.php:
  * define('USE_LOCAL_ACF_CONFIGURATION', true);
  */
-if ( ! defined( 'USE_LOCAL_ACF_CONFIGURATION' ) || ! USE_LOCAL_ACF_CONFIGURATION ) {
-  require_once dirname( __FILE__ ) . '/advanced-custom-field-export.php';
+if (!defined('USE_LOCAL_ACF_CONFIGURATION') || !USE_LOCAL_ACF_CONFIGURATION) {
+	require_once dirname(__FILE__) . '/advanced-custom-field-export.php';
 }
 
 /**
- * Shortcut for `echo themename_get_custom_field( ... )`, accepts the same arguments
+ * Shortcut for `echo themenameGetCustomField( ... )`, accepts the same arguments
  * @param str $key The custom field key
  * @param int $id The post ID
  * @param mixed $default What to return if there's no custom field value
  * @return void
- * @uses themename_get_custom_field()
+ * @uses themenameGetCustomField()
  */
-function themename_custom_field( $key, $id=false, $default='' ) {
-  echo themename_get_custom_field( $key, $id, $default );
+function themenameCustomField($key, $id = false, $default = '') {
+	echo themenameGetCustomField($key, $id, $default);
 }
 
 /**
@@ -39,21 +39,22 @@ function themename_custom_field( $key, $id=false, $default='' ) {
  * @return mixed (dependent upon $echo)
  * @uses get_field()
  */
-function themename_get_custom_field( $key, $id=false, $default='' ) {
-  global $post;
-  $key = trim( filter_var( $key, FILTER_SANITIZE_STRING ) );
-  $result = '';
+function themenameGetCustomField($key, $id = false, $default = '') {
+	global $post;
+	$key = trim(filter_var($key, FILTER_SANITIZE_STRING));
+	$result = '';
 
-  if ( function_exists( 'get_field' ) ) {
-    $result = ( isset( $post->ID ) && ! $id ? get_field( $key ) : get_field( $key, $id ) );
+	if (function_exists('get_field')) {
+		$result = (isset($post->ID) && !$id ? get_field($key) : get_field($key, $id));
 
-    if ( $result == '' ) {
-      $result = $default;
-    }
-  } else { // get_field() is undefined, most likely due to the plugin being inactive
-    $result = $default;
-  }
-  return $result;
+		if ($result == '') {
+			$result = $default;
+		}
+	} else {
+		// get_field() is undefined, most likely due to the plugin being inactive
+		$result = $default;
+	}
+	return $result;
 }
 
 /**
@@ -63,26 +64,29 @@ function themename_get_custom_field( $key, $id=false, $default='' ) {
  * @param int $id The post ID (will use global $post if not specified)
  * @param array $fields The sub-fields to retrieve
  * @return array
- * @uses themename_get_custom_field()
+ * @uses themenameGetCustomField()
  * @uses has_sub_field()
  * @uses get_sub_field()
  */
-function themename_get_repeater_content( $key, $id=null, $fields=array() ) {
-  global $post;
-  if ( ! $id ) $id = $post->ID;
-  $values = array();
+function themenameGetRepeaterContent($key, $id = null, $fields = array()) {
+	global $post;
+	if (!$id) {
+		$id = $post->ID;
+	}
 
-  if ( themename_get_custom_field( $key, $id, false ) && function_exists( 'has_sub_field' ) && function_exists( 'get_sub_field' ) ) {
+	$values = array();
 
-    while ( has_sub_field( $key, $id ) ) {
-      $value = array();
-      foreach ( $fields as $field ){
-        $value[$field] = get_sub_field( $field );
-      }
-      if( ! empty( $value ) ) {
-        $values[] = $value;
-      }
-    }
-  }
-  return $values;
+	if (themenameGetCustomField($key, $id, false) && function_exists('has_sub_field') && function_exists('get_sub_field')) {
+
+		while (has_sub_field($key, $id)) {
+			$value = array();
+			foreach ($fields as $field) {
+				$value[$field] = get_sub_field($field);
+			}
+			if (!empty($value)) {
+				$values[] = $value;
+			}
+		}
+	}
+	return $values;
 }
