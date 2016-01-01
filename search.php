@@ -8,9 +8,9 @@
 
 get_header();?>
 
-<div id="content">
+<?php get_template_part('block', 'page-banner');?>
 
-  <h1 class="post-title"><?php printf(__('Search results for "%s"', '%Text_Domain%'), get_search_query());?></h1>
+<div id="content" class="container">
 
   <?php if (have_posts()): ?>
 

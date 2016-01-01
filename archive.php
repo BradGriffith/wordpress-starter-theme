@@ -8,29 +8,24 @@
 
 get_header();?>
 
-<div id="content">
+<?php get_template_part( 'block', 'page-banner' ); ?>
 
-  <h1 class="post-title"><?php
-if (is_day()) {
-	printf(__('Daily Archives: %s', '%Text_Domain%'), get_the_date());
-} elseif (is_month()) {
-	printf(__('Monthly Archives: %s', '%Text_Domain%'), get_the_date('F Y'));
-} elseif (is_year()) {
-	printf(__('Yearly Archives: %s', '%Text_Domain%'), get_the_date('Y'));
-} else {
-	_e('Blog Archives', '%Text_Domain%');
-}
-?></h1>
+<div id="content" class="container">
 
-  <?php while (have_posts()): the_post();?>
+  <div class="main-content">
 
-    <?php get_template_part('content', 'archive');?>
+    <?php while (have_posts()): the_post();?>
 
-  <?php endwhile;?>
+      <?php get_template_part('content', 'archive');?>
 
-  <?php echo themenamePostNavLinks(); ?>
+    <?php endwhile;?>
 
-  <?php get_sidebar('archive');?>
+    <?php echo themenamePostNavLinks(); ?>
+
+  </div>
+  <div class="sidebar-right">
+    <?php get_sidebar('posts');?>
+  </div>
 
 </div><!-- #content -->
 

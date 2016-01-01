@@ -90,4 +90,34 @@ header, footer {
   @extend .container;
 }
 
+/** Page Top Banner */
+.page-top-wrapper {
+}
+
+.page-top-banner {
+  position: relative;
+  height: $page-top-banner-height;
+  overflow: hidden;
+  background: #000;
+
+  .background {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-size: cover;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  h1 {
+    color: #fff;
+    line-height: $page-top-banner-height;
+    text-shadow: 0px 0px 7px #999;
+  }
+}
+
 /** Media queries */

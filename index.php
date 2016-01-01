@@ -8,17 +8,24 @@
 
 get_header();?>
 
+<?php get_template_part('block', 'page-banner');?>
+
 <div id="content">
 
+  <div class="content-main">
   <?php while (have_posts()): the_post();?>
 
-    <?php get_template_part('content', 'index');?>
+	<?php get_template_part('content', 'index');?>
 
   <?php endwhile;?>
 
   <?php echo themenamePostNavLinks(); ?>
 
-  <?php get_sidebar('index');?>
+  </div>
+
+  <div class="sidebar-right">
+	  <?php get_sidebar('posts');?>
+  </div>
 
 </div><!-- #content -->
 
