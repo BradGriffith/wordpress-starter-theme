@@ -39,6 +39,21 @@ a {
   }
 }
 
+/** Inputs */
+input {
+  &[type=text],
+  &[type=password],
+  &[type=phone],
+  &[type=number]
+  &[type=password] {
+    width: 300px;
+    height: 44px;
+    border: 1px solid #ccc;
+    @include border-radius(3px);
+    padding: 0 10px;
+  }
+}
+
 /** Images */
 img {
   display: inline-block;
@@ -48,10 +63,23 @@ img {
   -ms-interpolation-mode: bicubic;
 }
 
-.alignleft, .alignright, .aligncenter, .alignnone {
+a img, img {
+  .alignright {
+    float:right;
+    margin:0 0 1em 1em;
+  }
+
+  .alignleft {
+    float:left;
+    margin:0 1em 1em 0;
+  }
+
+  .aligncenter {
+    display: block;
     margin-left: auto;
     margin-right: auto;
   }
+}
 
 /** Utility classes */
 .screen-reader-text {
@@ -69,6 +97,37 @@ img {
 
 .clear, .clearfix:after {
   clear: both;
+}
+
+.widget-title {
+  font-size: 1.3em;
+  margin: 1em 0 .25em;
+}
+
+/** Buttons */
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: .5em 1em;
+  margin-bottom: 0;
+  font-size: 1em;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  @include(user-select, none);
+  background: $color-cta;
+  border: 1px solid transparent;
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+    background: tint($color-cta, 10%);
+  }
 }
 
 /** Structure */
