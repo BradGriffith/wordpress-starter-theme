@@ -119,7 +119,7 @@ a img, img {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
   cursor: pointer;
-  @include(user-select, none);
+  @include user-select('none');
   background: $color-cta;
   border: 1px solid transparent;
   color: #fff;
