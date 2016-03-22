@@ -162,7 +162,7 @@ function themenameRegisterStylesScripts() {
 	wp_register_script('scripts', get_stylesheet_directory_uri() . '/js/scripts.js', array('jquery'), null, true);
 	wp_register_script('modernizr', get_stylesheet_directory_uri() . '/js/modernizr.min.js', null, null, false);
 
-	if (!is_admin() && !is_login_page()) {
+	if (!is_admin() && !isLoginPage()) {
 		wp_enqueue_style('styles');
 
 		//wp_enqueue_script( 'modernizr' );
