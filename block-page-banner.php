@@ -33,7 +33,7 @@ if (is_home() || is_single()) {
 
 // Set a default background image
 if (empty($headline_background)) {
-	$headline_background = get_the_thumbnail(get_the_ID(), 'page_banner');
+	$headline_background = get_the_post_thumbnail(get_the_ID(), 'page_banner');
 }
 
 // Set a default headline
